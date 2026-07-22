@@ -8,3 +8,9 @@ backend/.test-data/
 backend/.verification-data/
 frontend/node_modules/
 frontend/dist/
+
+# Local Codex and Trellis agent configuration
+.codex/
+.agents/
+AGENTS.md
+CONTEXT.md
