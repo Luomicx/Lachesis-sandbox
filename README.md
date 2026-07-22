@@ -1,9 +1,11 @@
 # Lachesis
 
-![GitHub](https://img.shields.io/badge/GitHub-Lachesis-181717?logo=github&logoColor=white)
+[![Repository](https://img.shields.io/badge/GitHub-Luomicx%2FLachesis--sandbox-181717?logo=github&logoColor=white)](https://github.com/Luomicx/Lachesis-sandbox)
 ![Python](https://img.shields.io/badge/Python-3.11%2B-3776AB?logo=python&logoColor=white)
 ![Flask](https://img.shields.io/badge/Flask-3.x-000000?logo=flask&logoColor=white)
 ![Status](https://img.shields.io/badge/Status-Backend%20MVP-2ea44f)
+
+Repository: [github.com/Luomicx/Lachesis-sandbox](https://github.com/Luomicx/Lachesis-sandbox)
 
 Lachesis is a personal career-simulation sandbox for undergraduate students in
 computer science, software engineering, and AI-related fields in mainland
