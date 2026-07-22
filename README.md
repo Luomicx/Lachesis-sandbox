@@ -4,6 +4,7 @@
 ![Python](https://img.shields.io/badge/Python-3.11%2B-3776AB?logo=python&logoColor=white)
 ![Flask](https://img.shields.io/badge/Flask-3.x-000000?logo=flask&logoColor=white)
 ![Status](https://img.shields.io/badge/Status-Backend%20MVP-2ea44f)
+[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](LICENSE)
 
 Repository: [github.com/Luomicx/Lachesis-sandbox](https://github.com/Luomicx/Lachesis-sandbox)
 
@@ -102,6 +103,10 @@ Runtime data defaults to `backend/data/` and is ignored by Git. Set
 
 The executable request, validation, and error contracts live in
 [`.trellis/spec/lachesis/domain-and-api.md`](.trellis/spec/lachesis/domain-and-api.md).
+
+## License
+
+Lachesis is distributed under the [GNU General Public License v3.0](LICENSE).
 
 ## Repository Layout
 
