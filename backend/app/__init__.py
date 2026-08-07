@@ -4,10 +4,12 @@ from pathlib import Path
 from typing import Any
 
 from flask import Flask, jsonify
+from werkzeug.exceptions import RequestEntityTooLarge
 
 from .config import Config
 from .errors import APIError
 from .services.career_repository import CareerRepository
+from .services.document_intake import DocumentIntakeService
 from .services.knowledge_base import create_knowledge_base
 
 
@@ -22,6 +24,11 @@ def create_app(config_overrides: dict[str, Any] | None = None) -> Flask:
     Path(app.config["DATA_DIR"]).mkdir(parents=True, exist_ok=True)
     app.extensions["career_repository"] = CareerRepository(app.config["DATA_DIR"])
     app.extensions["knowledge_base"] = create_knowledge_base(app.config)
+    app.extensions["document_intake"] = DocumentIntakeService(
+        app.extensions["career_repository"],
+        app.extensions["knowledge_base"],
+        app.config["CAREER_DOCUMENT_MAX_BYTES"],
+    )
 
     from .api import career_bp
 
@@ -44,5 +51,9 @@ def create_app(config_overrides: dict[str, Any] | None = None) -> Flask:
     @app.errorhandler(404)
     def handle_not_found(_: object):
         return jsonify({"error": {"code": "not_found", "message": "Resource not found."}}), 404
+
+    @app.errorhandler(RequestEntityTooLarge)
+    def handle_payload_too_large(_: RequestEntityTooLarge):
+        return jsonify({"error": {"code": "payload_too_large", "message": "Request is too large."}}), 413
 
     return app

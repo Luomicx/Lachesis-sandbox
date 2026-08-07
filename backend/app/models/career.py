@@ -56,6 +56,19 @@ def validate_baseline(value: Any) -> dict[str, Any]:
     return baseline
 
 
+def validate_baseline_update(value: Any) -> dict[str, Any]:
+    baseline_update = require_object(value, "baseline")
+    unsupported_fields = sorted(set(baseline_update) - set(REQUIRED_BASELINE_FIELDS))
+    if unsupported_fields:
+        raise APIError(
+            "validation_error",
+            "baseline contains unsupported fields.",
+            400,
+            {"unsupported_fields": unsupported_fields},
+        )
+    return baseline_update
+
+
 def validate_path(value: Any) -> dict[str, Any]:
     payload = require_object(value, "path")
     path_type = payload.get("type")

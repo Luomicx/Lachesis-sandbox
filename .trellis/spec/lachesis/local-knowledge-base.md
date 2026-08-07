@@ -44,10 +44,22 @@ future: upsert_entities -> upsert_relations -> get_graph
 future: append_events -> delete_collection
 ```
 
-只有 `health` 与 `create_collection` 属于当前边界切片。文档摄入、检索、
-图谱写入与事件追加必须在后续任务中经同一门面扩展，不能直接导入 provider
-类型。任何影响量化结果的检索证据必须可回溯到来源和版本；缺少合格数据时
-返回 `insufficient_data`。
+`health`、`create_collection` 与案例私有的原始附件存储属于当前边界切片。
+文档摄入必须经 collection 路径写入，由存储服务生成对象 ID 和元数据；它不得
+将客户端文件名用作路径，也不得解析或索引内容。检索、图谱写入与事件追加必须
+在后续任务中经同一门面扩展，不能直接导入 provider 类型。任何影响量化结果的
+检索证据必须可回溯到来源和版本；缺少合格数据时返回 `insufficient_data`。
+
+## 原始附件存储契约
+
+- 每个附件必须保存到 `<collection>/documents/objects/`，元数据保存到同一
+  collection 的 `documents/metadata/`；这两个内部路径绝不出现在 API 响应。
+- 第一阶段仅允许 PDF、TXT、DOCX、JPG/JPEG 和 PNG；扩展名必须匹配声明的
+  MIME 类型，文件大小不超过 10 MiB，且每个 multipart 请求只能包含一个文件。
+- 对象文件先在目标目录创建临时文件并受限分块复制，写完后原子替换最终对象。
+  空文件、超限文件或任何验证失败不得保留对象或元数据。
+- 原始附件只用于后续经用户确认的资料处理；当前阶段不得解析、OCR、嵌入、
+  搜索、发送到外部服务，或成为 global catalog / world-role context 的输入。
 
 ## Scenario: Local Knowledge-Base Health Boundary
 

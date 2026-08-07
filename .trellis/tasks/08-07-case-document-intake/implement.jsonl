@@ -1,0 +1,7 @@
+{"_example": "Fill with {\"file\": \"<path>\", \"reason\": \"<why>\"}. Put spec/research files only — no code paths. Run `python .trellis/scripts/get_context.py --mode packages` to list available specs. Delete this line once real entries are added."}
+{"file": ".trellis/spec/lachesis/product.md", "reason": "Defines the raw-attachment privacy boundary, required profile confirmation, and excluded automatic modelling behavior."}
+{"file": ".trellis/spec/lachesis/domain-and-api.md", "reason": "Defines case state transitions, API response envelopes, validation, and immutable scenario constraints."}
+{"file": ".trellis/spec/lachesis/local-knowledge-base.md", "reason": "Defines case-isolated filesystem collections, health states, and provider-neutral dependency rules."}
+{"file": ".trellis/spec/lachesis/architecture.md", "reason": "Defines module boundaries and prohibits direct legacy provider imports."}
+{"file": ".trellis/spec/backend/directory-structure.md", "reason": "Defines backend API, model, service, and test placement conventions."}
+{"file": ".trellis/spec/backend/error-handling.md", "reason": "Defines the shared API error envelope and safe error propagation expectations."}

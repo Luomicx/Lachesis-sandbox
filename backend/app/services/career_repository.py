@@ -10,7 +10,7 @@ from typing import Any
 from uuid import uuid4
 
 from ..errors import APIError
-from ..models.career import validate_baseline, validate_path
+from ..models.career import validate_baseline, validate_baseline_update, validate_path
 
 
 def utc_now() -> str:
@@ -49,20 +49,55 @@ class CareerRepository:
     def _case_path(self, case_id: str) -> Path:
         return self.cases_dir / case_id / "case.json"
 
-    def create_case(self, name: Any, baseline: Any) -> dict[str, Any]:
+    def create_case(
+        self,
+        name: Any,
+        baseline: Any,
+        *,
+        baseline_provided: bool,
+    ) -> dict[str, Any]:
         if not isinstance(name, str) or not name.strip():
             raise APIError("validation_error", "name is required.", 400)
+        if baseline_provided and not isinstance(baseline, dict):
+            raise APIError("validation_error", "baseline must be an object.", 400)
         case_id = f"case_{uuid4().hex[:12]}"
         now = utc_now()
+        has_baseline = baseline_provided
         case = {
             "id": case_id,
             "name": name.strip(),
-            "status": "intake",
-            "baseline": validate_baseline(baseline),
-            "baseline_version": 1,
+            "status": "intake" if has_baseline else "draft",
+            "baseline": validate_baseline(baseline) if has_baseline else {},
+            "baseline_version": 1 if has_baseline else 0,
             "created_at": now,
             "updated_at": now,
         }
+        self._write_json(self._case_path(case_id), case)
+        return case
+
+    def update_baseline(self, case_id: str, baseline_update: Any) -> dict[str, Any]:
+        case = self.get_case(case_id)
+        if case["status"] not in {"draft", "intake"}:
+            raise APIError("invalid_state", "Confirmed case baselines cannot be modified.", 409)
+
+        normalized_update = validate_baseline_update(baseline_update)
+        updated_baseline = {**case["baseline"], **normalized_update}
+        if updated_baseline == case["baseline"]:
+            return case
+
+        case["baseline"] = updated_baseline
+        case["baseline_version"] += 1
+        case["status"] = "intake"
+        case["updated_at"] = utc_now()
+        self._write_json(self._case_path(case_id), case)
+        return case
+
+    def begin_intake(self, case_id: str) -> dict[str, Any]:
+        case = self.get_case(case_id)
+        if case["status"] != "draft":
+            return case
+        case["status"] = "intake"
+        case["updated_at"] = utc_now()
         self._write_json(self._case_path(case_id), case)
         return case
 
@@ -75,6 +110,7 @@ class CareerRepository:
             return case
         if case["status"] != "intake":
             raise APIError("invalid_state", "Only an intake case can be confirmed.", 409)
+        case["baseline"] = validate_baseline(case["baseline"])
         case["status"] = "confirmed"
         case["updated_at"] = utc_now()
         self._write_json(self._case_path(case_id), case)
