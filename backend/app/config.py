@@ -14,4 +14,9 @@ class Config:
         "LACHESIS_DATA_DIR",
         str(Path(__file__).resolve().parents[1] / "data"),
     )
+    KNOWLEDGE_BASE_ENABLED = (
+        os.environ.get("LACHESIS_KNOWLEDGE_BASE_ENABLED", "true").lower() == "true"
+    )
+    KNOWLEDGE_BASE_PROVIDER = os.environ.get("LACHESIS_KNOWLEDGE_BASE_PROVIDER", "filesystem")
+    KNOWLEDGE_BASE_DIR = os.environ.get("LACHESIS_KNOWLEDGE_BASE_DIR")
     MAX_CONTENT_LENGTH = 50 * 1024 * 1024

@@ -1,0 +1,6 @@
+{"_example": "Fill with {\"file\": \"<path>\", \"reason\": \"<why>\"}. Put spec/research files only — no code paths. Run `python .trellis/scripts/get_context.py --mode packages` to list available specs. Delete this line once real entries are added."}
+{"file": ".trellis/spec/lachesis/local-knowledge-base.md", "reason": "Defines the provider-neutral adapter contract, case isolation, and evidence constraints."}
+{"file": ".trellis/spec/lachesis/architecture.md", "reason": "Defines application module boundaries and prohibits legacy provider coupling."}
+{"file": ".trellis/spec/lachesis/domain-and-api.md", "reason": "Defines API response and lifecycle conventions that the health endpoint must preserve."}
+{"file": ".trellis/spec/backend/directory-structure.md", "reason": "Defines backend module placement conventions for the facade and providers."}
+{"file": ".trellis/spec/backend/error-handling.md", "reason": "Defines structured backend error behavior for future unavailable knowledge-base operations."}
