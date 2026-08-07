@@ -1,3 +1,8 @@
+"""
+services/ 目录：业务服务层。
+本文件实现原始文档摄入服务，将私有文档落盘到对应 case 的知识库集合，
+不解析、不索引文件内容。
+"""
 from __future__ import annotations
 
 import os
@@ -25,7 +30,7 @@ COPY_CHUNK_SIZE = 64 * 1024
 
 
 class DocumentIntakeService:
-    """Store raw, case-private documents without inspecting their content."""
+    """存储 case 私有的原始文档，且不检查其内容。"""
 
     def __init__(
         self,

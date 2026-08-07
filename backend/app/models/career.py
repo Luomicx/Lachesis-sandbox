@@ -1,3 +1,8 @@
+"""
+models/ 目录：领域模型层。
+本文件定义职业案例的 baseline、路径等验证规则与共享常量，
+供 API 与 service 层复用。
+"""
 from __future__ import annotations
 
 from collections.abc import Mapping

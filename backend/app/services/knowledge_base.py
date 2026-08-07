@@ -1,3 +1,8 @@
+"""
+services/ 目录：业务服务层。
+本文件实现按 case 隔离的知识库边界与文件系统提供者，
+定义健康状态并拒绝不安全的 case ID，不引入可选外部依赖。
+"""
 from __future__ import annotations
 
 import re
@@ -8,7 +13,7 @@ from typing import Any, Mapping, Protocol
 
 @dataclass(frozen=True)
 class KnowledgeBaseHealth:
-    """Provider-neutral health information safe to expose from ``/health``."""
+    """可安全暴露到 ``/health`` 的提供者无关健康信息。"""
 
     provider: str
     status: str
@@ -27,21 +32,21 @@ class KnowledgeBaseHealth:
 
 
 class KnowledgeBase(Protocol):
-    """Boundary for per-case knowledge storage.
+    """按 case 隔离的知识存储边界。
 
-    Future providers must add document indexing and search to this facade
-    rather than letting career services depend on provider-specific types.
+    未来的提供者必须通过此外观增加文档索引与搜索，
+    而非让 career 服务依赖提供者特有的类型。
     """
 
     def health(self) -> KnowledgeBaseHealth:
-        """Return the provider's current dependency state."""
+        """返回提供者当前的依赖状态。"""
 
     def create_collection(self, case_id: str) -> Path:
-        """Create and return the isolated collection for one career case."""
+        """创建并返回某个 career case 的隔离集合。"""
 
 
 class FilesystemKnowledgeBase:
-    """Local, dependency-free provider that reserves one directory per case."""
+    """本地、无依赖的提供者，为每个 case 预留一个目录。"""
 
     provider_name = "filesystem"
     case_id_pattern = re.compile(r"case_[0-9a-f]{12}\Z")
@@ -99,7 +104,7 @@ class FilesystemKnowledgeBase:
 
 
 class UnavailableKnowledgeBase:
-    """Safe placeholder for a disabled provider or unavailable dependency."""
+    """针对禁用提供者或不可用依赖的安全占位实现。"""
 
     def __init__(self, provider_name: str, message: str) -> None:
         self.provider_name = provider_name
@@ -118,7 +123,7 @@ class UnavailableKnowledgeBase:
 
 
 class InvalidKnowledgeBase:
-    """Safe placeholder for an unsupported or malformed provider setting."""
+    """针对不支持或配置错误的提供者的安全占位实现。"""
 
     def __init__(self, provider_name: str) -> None:
         self.provider_name = provider_name
@@ -136,7 +141,7 @@ class InvalidKnowledgeBase:
 
 
 def create_knowledge_base(configuration: Mapping[str, Any]) -> KnowledgeBase:
-    """Build the configured provider without importing optional integrations."""
+    """在不导入可选集成的前提下构建所配置的提供者。"""
 
     configured_provider = str(configuration.get("KNOWLEDGE_BASE_PROVIDER", "filesystem"))
     provider_name = configured_provider.strip().lower()

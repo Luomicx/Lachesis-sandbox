@@ -1,6 +1,6 @@
 """
-LLM客户端封装
-统一使用OpenAI格式调用
+utils/ 目录：工具函数层。
+本文件为 legacy LLM 客户端封装，统一使用 OpenAI 格式调用。
 """
 
 import json

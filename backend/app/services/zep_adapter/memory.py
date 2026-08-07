@@ -1,7 +1,6 @@
 """
-记忆管理服务
-
-提供与 ZepGraphMemoryUpdater 兼容的接口
+services/zep_adapter/ 目录：legacy Zep 本地适配器。
+本文件为记忆管理服务，提供与 ZepGraphMemoryUpdater 兼容的接口。
 """
 
 import time

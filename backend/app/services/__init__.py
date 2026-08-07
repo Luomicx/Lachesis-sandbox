@@ -1,1 +1,4 @@
-"""Business services for Lachesis."""
+"""
+services/ 目录：业务服务层。
+本包提供持久化、仿真与文档摄入等服务实现。
+"""

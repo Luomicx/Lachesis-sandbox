@@ -1,3 +1,7 @@
+"""
+app/ 目录：应用核心包。
+本文件定义统一的 API 错误封装，用于跨层安全传递错误码与详情。
+"""
 from __future__ import annotations
 
 from dataclasses import dataclass, field

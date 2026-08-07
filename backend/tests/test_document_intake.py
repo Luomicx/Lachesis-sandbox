@@ -1,3 +1,7 @@
+"""
+tests/ 目录：后端集成测试。
+本文件覆盖文档摄入流程，包括上传、隔离、校验与失败回滚。
+"""
 from __future__ import annotations
 
 from io import BytesIO

@@ -1,1 +1,4 @@
-"""Backend integration tests."""
+"""
+tests/ 目录：后端集成测试。
+本包为后端黑盒 Flask API 集成测试集合。
+"""

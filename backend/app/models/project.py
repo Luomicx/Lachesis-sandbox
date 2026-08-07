@@ -1,6 +1,7 @@
 """
-项目上下文管理
-用于在服务端持久化项目状态，避免前端在接口间传递大量数据
+models/ 目录：领域模型层。
+本文件为 legacy MiroFish 项目上下文管理，
+用于在服务端持久化项目状态，避免前端在接口间传递大量数据。
 """
 
 import os
@@ -33,7 +34,7 @@ class Project:
     updated_at: str
     
     # 文件信息
-    files: List[Dict[str, str]] = field(default_factory=list)  # [{filename, path, size}]
+    files: List[Dict[str, str]] = field(default_factory=list)  # [{文件名, 路径, 大小}]
     total_text_length: int = 0
     
     # 本体信息（接口1生成后填充）

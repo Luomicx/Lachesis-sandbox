@@ -1,1 +1,4 @@
-"""Domain model helpers for Lachesis."""
+"""
+models/ 目录：领域模型层。
+本包定义职业领域的验证规则与共享领域常量。
+"""

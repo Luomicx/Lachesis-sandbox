@@ -1,7 +1,6 @@
 """
-Zep 本地适配器客户端
-
-提供与 zep-cloud SDK 相同的接口，使用本地 Neo4j + Qdrant 替代
+services/zep_adapter/ 目录：legacy Zep 本地适配器。
+本文件提供与 zep-cloud SDK 相同的客户端接口，使用本地 Neo4j + Qdrant 替代。
 """
 
 import time

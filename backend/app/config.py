@@ -1,3 +1,7 @@
+"""
+app/ 目录：应用核心包。
+本文件定义环境变量驱动的运行时配置，含数据目录与文档大小限制。
+"""
 from __future__ import annotations
 
 import os
@@ -5,7 +9,7 @@ from pathlib import Path
 
 
 class Config:
-    """Runtime settings for the standalone local-first backend."""
+    """本地优先后端的运行时配置。"""
 
     DEBUG = os.environ.get("FLASK_DEBUG", "false").lower() == "true"
     SECRET_KEY = os.environ.get("SECRET_KEY", "lachesis-development-only")

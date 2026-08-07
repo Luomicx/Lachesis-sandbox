@@ -1,3 +1,7 @@
+"""
+tests/ 目录：后端集成测试。
+本文件覆盖职业案例、路径、场景与仿真的 API 集成行为。
+"""
 from __future__ import annotations
 
 import sys

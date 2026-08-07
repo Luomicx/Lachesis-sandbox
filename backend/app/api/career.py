@@ -1,3 +1,8 @@
+"""
+api/ 目录：Flask Blueprint 层。
+本文件定义案例、路径、场景与文档相关的 HTTP 接口，
+仅做请求校验并调用 service 层，不直接访问持久化路径。
+"""
 from __future__ import annotations
 
 from typing import Any

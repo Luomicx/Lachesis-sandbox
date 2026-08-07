@@ -1,3 +1,8 @@
+"""
+services/ 目录：业务服务层。
+本文件实现基于文件系统的案例仓库，负责按 case 隔离、
+版本化的 JSON 工件读写与生命周期状态流转。
+"""
 from __future__ import annotations
 
 import json
@@ -18,7 +23,7 @@ def utc_now() -> str:
 
 
 class CareerRepository:
-    """Filesystem repository with case-scoped, versioned JSON artifacts."""
+    """按 case 隔离、带版本号的 JSON 工件文件系统仓库。"""
 
     def __init__(self, data_dir: str | Path):
         self.root = Path(data_dir)

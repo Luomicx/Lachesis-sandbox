@@ -1,7 +1,6 @@
 """
-Neo4j 图数据库服务
-
-提供图操作的底层实现，兼容 Zep Cloud 的图接口
+services/zep_adapter/ 目录：legacy Zep 本地适配器。
+本文件为 Neo4j 图数据库服务，提供图操作底层实现，兼容 Zep Cloud 的图接口。
 """
 
 import time

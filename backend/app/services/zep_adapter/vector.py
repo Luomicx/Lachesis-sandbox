@@ -1,7 +1,6 @@
 """
-Qdrant 向量数据库服务
-
-提供语义搜索功能，替代 Zep Cloud 的向量搜索
+services/zep_adapter/ 目录：legacy Zep 本地适配器。
+本文件为 Qdrant 向量数据库服务，提供语义搜索功能，替代 Zep Cloud 的向量搜索。
 """
 
 import os

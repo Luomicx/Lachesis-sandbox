@@ -1,6 +1,6 @@
 """
-文件解析工具
-支持PDF、Markdown、TXT文件的文本提取
+utils/ 目录：工具函数层。
+本文件为 legacy 文件解析工具，支持 PDF、Markdown、TXT 文件的文本提取。
 """
 
 import os

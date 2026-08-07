@@ -1,3 +1,7 @@
+"""
+app/ 目录：应用核心包。
+本文件为 Flask 应用工厂，负责装配各扩展、注册蓝图与统一错误处理。
+"""
 from __future__ import annotations
 
 from pathlib import Path
@@ -14,7 +18,7 @@ from .services.knowledge_base import create_knowledge_base
 
 
 def create_app(config_overrides: dict[str, Any] | None = None) -> Flask:
-    """Create the standalone Lachesis backend application."""
+    """创建独立的 Lachesis 后端应用。"""
     app = Flask(__name__)
     app.config.from_object(Config)
     if config_overrides:

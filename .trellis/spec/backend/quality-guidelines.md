@@ -32,6 +32,10 @@ Questions to answer:
 
 <!-- Patterns that must always be used -->
 
+- 每个 `.py` 文件开头必须带有中文文件头注释，说明所在文件夹的用途与文件职责（见 `directory-structure.md` 的「文件头注释约定」）。
+- 全项目代码注释（行内注释、docstring）统一使用中文。
+
+
 (To be filled by the team)
 
 ---

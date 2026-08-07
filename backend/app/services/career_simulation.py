@@ -1,3 +1,8 @@
+"""
+services/ 目录：业务服务层。
+本文件实现确定性的本地仿真运行器，在引入 Mesa/SimPy 适配器前使用，
+负责批量运行与聚合结果。
+"""
 from __future__ import annotations
 
 import random
@@ -42,7 +47,7 @@ def _percentile(values: list[float], percentile: float) -> float:
 
 
 class CareerSimulationService:
-    """Deterministic local runner used until the Mesa/SimPy adapter is introduced."""
+    """在引入 Mesa/SimPy 适配器之前使用的确定性本地运行器。"""
 
     def __init__(self, repository: CareerRepository):
         self.repository = repository

@@ -55,6 +55,35 @@ src/
 
 ---
 
+## 文件头注释约定（必需）
+
+> 每个 `.py` 文件的开头都必须使用中文注释说明**该文件所在目录（文件夹）的用途**，
+> 以及本文件在其中扮演的角色。整个项目内的代码注释统一使用**中文**。
+
+- 文件头注释放置在文件最顶部，`from __future__ import annotations` 等导入之前。
+- 内容至少包含：所在文件夹的用途 + 本文件的具体职责。
+- 全项目代码注释（含行内注释、函数 docstring）一律使用中文，禁止使用英文注释。
+
+示例：
+
+```python
+"""
+models/ 目录：领域模型层。
+本文件定义 case 领域的验证规则与共享常量，
+供 API 与 service 层复用，禁止被 legacy 模型依赖。
+"""
+from __future__ import annotations
+```
+
+```python
+# services/ 目录：持久化与仿真编排层。
+# 本文件负责文档摄入，落盘到对应 case 的知识库集合。
+from __future__ import annotations
+```
+
+> 新增 `backend/app/` 下的 `.py` 文件必须附带该文件头注释；
+> 已有的旧文件在后续修改时逐步补齐，并同步将英文注释改为中文。
+
 ## Established Lachesis Backend Convention
 
 ```text

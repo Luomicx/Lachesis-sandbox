@@ -1,3 +1,7 @@
+"""
+backend/ 目录：后端应用根目录。
+本文件为本地开发入口，负责创建 Flask 应用并按环境变量启动服务。
+"""
 from __future__ import annotations
 
 import os

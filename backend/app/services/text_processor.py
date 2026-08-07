@@ -1,5 +1,6 @@
 """
-文本处理服务
+services/ 目录：业务服务层。
+本文件为 legacy 文本处理服务，负责从文件提取文本并分割。
 """
 
 from typing import List, Optional

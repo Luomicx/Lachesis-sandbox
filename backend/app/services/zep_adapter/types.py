@@ -1,7 +1,6 @@
 """
-Zep 适配器数据类型定义
-
-保持与 zep-cloud SDK 相同的数据结构
+services/zep_adapter/ 目录：legacy Zep 本地适配器。
+本文件定义适配器数据类型，保持与 zep-cloud SDK 相同的数据结构。
 """
 
 from dataclasses import dataclass, field

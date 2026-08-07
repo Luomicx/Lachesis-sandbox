@@ -1,3 +1,7 @@
+"""
+tests/ 目录：后端集成测试。
+本文件覆盖知识库健康状态与按 case 隔离行为。
+"""
 from __future__ import annotations
 
 import shutil

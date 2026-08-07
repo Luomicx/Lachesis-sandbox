@@ -1,6 +1,5 @@
 """
-Zep 本地适配器
-
+services/zep_adapter/ 目录：legacy Zep 本地适配器。
 使用 Neo4j + Qdrant 替代 Zep Cloud，提供相同的接口。
 
 架构:
